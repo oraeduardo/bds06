@@ -14,19 +14,21 @@ public class MovieDTO {
 	private Integer year;
 	private String imgUrl;
 	private String synopsis;
+	private Long genreId;
 	
 	private List<ReviewDTO> reviews = new ArrayList<>();
 	
 	public MovieDTO() {
 	}
 
-	public MovieDTO(Long id, String title, String subTitle, Integer year, String imgUrl, String synopsis) {
+	public MovieDTO(Long id, String title, String subTitle, Integer year, String imgUrl, String synopsis, Long genreId) {
 		this.id = id;
 		this.title = title;
 		this.subTitle = subTitle;
 		this.year = year;
 		this.imgUrl = imgUrl;
 		this.synopsis = synopsis;
+		this.genreId = genreId; 
 	}
 	
 	public MovieDTO(Movie entity) {
@@ -36,6 +38,7 @@ public class MovieDTO {
 		this.year = entity.getYear();
 		this.imgUrl = entity.getImgUrl();
 		this.synopsis = entity.getSynopsis();
+		this.genreId = entity.getGenre().getId();
 	}
 
 	public MovieDTO(Movie entity, List<Review> reviews) {
@@ -91,6 +94,14 @@ public class MovieDTO {
 		this.synopsis = synopsis;
 	}
 	
+	public Long getGenreId() {
+		return genreId;
+	}
+
+	public void setGenreId(Long genreId) {
+		this.genreId = genreId;
+	}
+
 	public List<ReviewDTO> getReviews() {
 		return reviews;
 	}

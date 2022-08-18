@@ -1,8 +1,8 @@
 package com.devsuperior.movieflix.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +19,8 @@ public class GenreController {
 	private GenreService service;
 	
 	@GetMapping
-	public ResponseEntity<Page<GenreDTO>> findAll(Pageable pageable) {
-		Page<GenreDTO> dto = service.findAllPaged(pageable);
+	public ResponseEntity<List<GenreDTO>> findAll() {
+		List<GenreDTO> dto = service.findAll();
 		return ResponseEntity.ok().body(dto);
 	}
 	
