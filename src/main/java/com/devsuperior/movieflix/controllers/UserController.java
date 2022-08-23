@@ -25,7 +25,7 @@ public class UserController {
 	
 	@GetMapping(value = "/profile")
 	public ResponseEntity<UserDTO> profileForCurrentUser() {
-		UserDTO dto = service.profileForCurrentUser();
+		UserDTO dto = service.profileForCurrentUserDTO();
 		return ResponseEntity.ok().body(dto);
 	}
 }

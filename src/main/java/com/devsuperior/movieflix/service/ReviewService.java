@@ -17,7 +17,7 @@ public class ReviewService {
 	ReviewRepository repository;
 	
 	@Autowired
-	private AuthService authService;
+	private UserService userService;
 	
 	@Transactional
 	public ReviewDTO insert(ReviewDTO dto) {
@@ -29,11 +29,12 @@ public class ReviewService {
 	
 	private void copyDtoToEntity(ReviewDTO dto, Review entity) {
 		
-		User user = authService.authenticated();
+		User user = userService.profileForCurrentUser();
 
 		Movie movie = new Movie();
 		movie.setId(dto.getMovieId());
 		
+		entity.setId(dto.getId());
 		entity.setText(dto.getText());
 		entity.setMovie(movie);
 		entity.setUser(user);

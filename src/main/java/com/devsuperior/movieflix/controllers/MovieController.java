@@ -2,7 +2,9 @@ package com.devsuperior.movieflix.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +26,9 @@ public class MovieController {
 	public ResponseEntity<Page<MovieDTO>> find(
 			@RequestParam(value = "genreId", defaultValue = "0") Long genreId,
 			Pageable pageable) {
-		Page<MovieDTO> dto = service.findAllPaged(genreId, pageable);
+		PageRequest pagerequest = PageRequest.of(pageable.getPageNumber(),pageable.getPageSize(), Sort.by("title"));
+		Page<MovieDTO> dto = service.findAllPaged(genreId, pagerequest);
+		//Page<MovieDTO> dto = service.findAllPaged(genreId, pageable);
 		return ResponseEntity.ok().body(dto);
 	}
 	

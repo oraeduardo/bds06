@@ -52,8 +52,13 @@ public class UserService implements UserDetailsService, Serializable {
 	}
 
 	@Transactional(readOnly = true)
-	public UserDTO profileForCurrentUser() {
-		User user = authService.authenticated();
+	public User profileForCurrentUser() {
+		return authService.authenticated();
+	}
+	
+	@Transactional(readOnly = true)
+	public UserDTO profileForCurrentUserDTO() {
+		User user = profileForCurrentUser();
 		return new UserDTO(user);
 	}
 	

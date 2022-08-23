@@ -20,8 +20,8 @@ public class GenreDTO implements Serializable {
 	}
 	
 	public GenreDTO(Genre entity) {
-		this.id = entity.getId();
-		this.name = entity.getName();
+		id = entity.getId();
+		name = entity.getName();
 	}
 
 	public Long getId() {
